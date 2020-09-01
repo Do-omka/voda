@@ -45,5 +45,14 @@
 			color: #006DC3;
 			white-space: pre-wrap;
 		}
+		
+		&::after {
+			display: inline;
+			content: ';';
+		}
+		
+		&:last-child::after {
+			content: '.';
+		}
 	}
 }
