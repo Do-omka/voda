@@ -28,7 +28,8 @@ const
 		],
 	},
 	pugOptions = {
-		plugins: [bem]
+		basedir: 'src/pug',
+		plugins: [bem],
 	}
 
 function html() {
