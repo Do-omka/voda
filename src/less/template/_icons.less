@@ -1,0 +1,26 @@
+.ifnt {
+	font-family: 'icons';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 1;
+	// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+	text-decoration: none;
+	text-transform: none;
+	user-select: none;
+}
+
+.ifnt(@filename) {
+	&:extend(.ifnt);
+	
+	@drop: '\E001';
+	
+	content: @@filename;
+}
+
+.ifnt-drop::before {
+	.ifnt(drop);
+}
+
