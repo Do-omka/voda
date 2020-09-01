@@ -32,3 +32,66 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.r() {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.c() {
+	display: flex;
+	flex-direction: column;
+}
+
+.cc(@align: center) {
+	.c();
+	justify-content: center;
+	align-items: center;
+	text-align: @align;
+}
+
+.cell(@col: none, @res: 0) {
+	.basis() {
+		& when (@col = auto) {
+			basis: auto;
+			max-width: 100%;
+		}
+		& when (isnumber(@col)) {
+			basis: (100% / (12 / @col));
+			max-width: (100% / (12 / @col));
+		}
+	}
+	
+	& when (@col = none) {
+		flex-basis: 0;
+		flex-grow: 1
+	}
+	
+	& when not((@col = none)) {
+		.return() {
+			flex: 0 0 .basis()[basis];
+			max-width: .basis()[max-width];
+		}
+		
+		& when (@res = 0) {
+			.return();
+		}
+		& when not((@res = 0)) {
+			@media (~'@{res}') {
+				.return();
+			}
+		}
+	}
+}
+
+.grid(@xgap: 16px, @ygap: @xgap) {
+	.r();
+	margin: -@ygap -@xgap;
+	
+	> * {
+		.c();
+		max-width: 100%;
+		padding: @ygap @xgap;
+	}
+}
