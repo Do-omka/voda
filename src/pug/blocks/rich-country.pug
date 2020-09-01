@@ -1,0 +1,16 @@
+.b-rich-country
+	.container
+		._container
+			h2._title
+				| Россия — страна,
+				br
+				| богатая водными ресурсами
+			ul._list
+				- var list = [{name: 'моря',	value: '13'},{name: 'реки',	value: '2,5 млн.'},{name: 'озера',	value: '2,7 млн.'},{name: 'болота',	value: '> 1,5 млн. км<sup>2</sup>'},{name: 'подземные воды',	value: '28 тыс. км<sup>3</sup>'},{name: 'ледники',	value: '8 000'}]
+				each item, i in list
+					li._li
+						._li-content
+							img._img(src='/img/rich-country-' + (i+1) + '.svg')
+							._text
+								._name= item.name
+								._value !{item.value}
