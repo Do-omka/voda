@@ -24,18 +24,21 @@
 		text-transform: uppercase;
 		margin-bottom: 24px;
 		
-		& > *:not(:last-child) {
-			flex-grow: 1;
+		& > * {
 			display: flex;
 			align-items: center;
 			
-			&::after {
-				flex-shrink: 0;
-				width: 1px;
-				height: 55px;
-				content: '';
-				background: #D7DBE0;
-				margin: 0 auto;
+			&:not(:last-child) {
+				flex-grow: 1;
+				
+				&::after {
+					flex-shrink: 0;
+					width: 1px;
+					height: 55px;
+					content: '';
+					background: #D7DBE0;
+					margin: 0 auto;
+				}
 			}
 		}
 	}
