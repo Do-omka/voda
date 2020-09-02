@@ -98,7 +98,7 @@ function icons() {
 		fontName: 'icons',
 		prependUnicode: true,
 		formats: ['svg', 'ttf', 'eot', 'woff', 'woff2'],
-		timestamp: Math.round(Date.now()/1000),
+		timestamp: Math.round(Date.now() / 1000),
 		fontHeight: '1001',
 		normalize: true,
 	  }))
