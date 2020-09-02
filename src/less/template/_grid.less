@@ -88,10 +88,15 @@
 .grid(@xgap: 16px, @ygap: @xgap) {
 	.r();
 	margin: -@ygap -@xgap;
+	pointer-events: none;
 	
 	> * {
 		.c();
 		max-width: 100%;
 		padding: @ygap @xgap;
+		
+		& > * {
+			pointer-events: auto;
+		}
 	}
 }
