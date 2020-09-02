@@ -25,6 +25,7 @@ const
 				{preserveAspectRatio: 'none'},
 			]}},
 			{removeViewBox: false},
+			{removeUnknownsAndDefaults: false}
 		],
 	},
 	pugOptions = {
