@@ -1,0 +1,82 @@
+.album {
+	padding-top: 48px;
+	
+	&_title {
+		margin-bottom: 24px;
+	}
+	
+	&_img {
+		width: 280px;
+	}
+	
+	@media (@sm) {
+		padding-top: 60px;
+		
+		&_title {
+			margin-bottom: 32px;
+		}
+		
+		&_img {
+			width: 300px;
+		}
+	}
+	
+	@media (@md) {
+		padding-top: 80px;
+		
+		&_title {
+			margin-bottom: 40px;
+		}
+		
+		&_list {
+			.grid(10px);
+		}
+		
+		&_li {
+			.cell(4);
+		}
+		
+		&_img {
+			width: 100%;
+		}
+	}
+	
+	@media (@lg) {
+		padding-top: 100px;
+		
+		&_title {
+			margin-bottom: 48px;
+		}
+	}
+	
+	@media (@mdx) {
+		&_container {
+			max-width: none;
+			padding-left: 0;
+			padding-right: 0;
+		}
+		
+		&_scroll {
+			display: flex;
+			overflow: auto;
+			padding-bottom: 20px;
+			margin-bottom: -20px;
+		}
+		
+		&_list {
+			flex-shrink: 0;
+			.container();
+			flex-direction: row;
+			max-width: none;
+			width: auto;
+		}
+		
+		&_li {
+			flex-shrink: 0;
+			
+			&:not(:last-child) {
+				padding-right: 20px;
+			}
+		}
+	}
+}
