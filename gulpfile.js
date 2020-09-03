@@ -85,6 +85,13 @@ function fnt() {
 		.pipe(bs.stream())
 }
 
+function copyToRoot() {
+	return gulp.src('src/root/*', {since: gulp.lastRun(fnt)})
+		.pipe(newer('dev'))
+		.pipe(gulp.dest('dev'))
+		.pipe(bs.stream())
+}
+
 function icons() {
   return gulp.src('dev/img/fnt/*.svg')
 	 .pipe(iconfontCss({
@@ -130,6 +137,10 @@ function watch_icons() {
 	return gulp.watch('dev/img/fnt', icons)
 }
 
+function watch_root() {
+	return gulp.watch('src/root', copyToRoot)
+}
+
 function serve() {
 	bs.init({
 		server: 'dev',
@@ -140,8 +151,8 @@ function serve() {
 }
 
 // tasks
-gulp.task('default', gulp.parallel(serve, watch_html, watch_img, watch_fnt, watch_icons, watch_css, watch_js))
+gulp.task('default', gulp.parallel(serve, watch_html, watch_img, watch_fnt, watch_icons, watch_css, watch_js, watch_root))
 
-gulp.task('run', gulp.parallel(gulp.series(img, fnt, icons, css), html, js))
+gulp.task('run', gulp.parallel(gulp.series(img, fnt, icons, css), html, js, copyToRoot))
 
 gulp.task('dev', gulp.series('run', 'default'))
