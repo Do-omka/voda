@@ -15,12 +15,44 @@
 .ifnt(@filename) {
 	&:extend(.ifnt);
 	
-	@drop: '\E001';
+	@date: '\E001';
+	@drop: '\E002';
+	@fb: '\E003';
+	@mouse: '\E004';
+	@ok: '\E005';
+	@plus: '\E006';
+	@question: '\E007';
+	@vk: '\E008';
+	@yt: '\E009';
 	
 	content: @@filename;
 }
 
+.ifnt-date::before {
+	.ifnt(date);
+}
 .ifnt-drop::before {
 	.ifnt(drop);
+}
+.ifnt-fb::before {
+	.ifnt(fb);
+}
+.ifnt-mouse::before {
+	.ifnt(mouse);
+}
+.ifnt-ok::before {
+	.ifnt(ok);
+}
+.ifnt-plus::before {
+	.ifnt(plus);
+}
+.ifnt-question::before {
+	.ifnt(question);
+}
+.ifnt-vk::before {
+	.ifnt(vk);
+}
+.ifnt-yt::before {
+	.ifnt(yt);
 }
 

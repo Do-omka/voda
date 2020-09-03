@@ -14,6 +14,7 @@
 }
 
 .btn {
+	@p: 16px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -23,7 +24,7 @@
 	font-style: normal;
 	font-weight: bold;
 	font-size: 16px;
-	line-height: 19px;
+	line-height: 20px;
 	text-align: center;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
@@ -31,10 +32,18 @@
 	
 	&._red {
 		background: #D1001B;
+		
+		.btn_icon {
+			background: #B80018;
+		}
 	}
 	
 	&._blue {
 		background: #006DC3;
+		
+		.btn_icon {
+			background: #005697;
+		}
 	}
 	
 	a&,
@@ -45,6 +54,33 @@
 			cursor: pointer;
 		}
 	}
+	
+	&._icon {
+		align-items: stretch;
+		padding: 0;
+	}
+	
+	&_icon {
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 52px;
+		
+		&.ifnt-question {
+			font-size: 29px;
+		}
+	}
+	
+	&_text {
+		flex-grow: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: @p;
+	}
+}
 }
 
 .h2 {
