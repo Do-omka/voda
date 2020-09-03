@@ -4,6 +4,11 @@
 	color: #fff;
 	background: #006DC3 svg-load('materials-bg.svg') no-repeat bottom -30px left -30px;
 	
+	&_content {
+		display: flex;
+		flex-direction: column;
+	}
+	
 	&_title {
 		font-family: Montserrat;
 		font-style: normal;
@@ -91,6 +96,177 @@
 		}
 	}
 	
+	&_table {
+		border: 1px solid rgba(#fff, 0.5);
+		
+		.checked() {
+			color: #fff;
+			background: #006DC3;
+		}
+		
+		#materials-1:checked {
+			~ .materials_table-header {
+				justify-content: flex-start;
+				
+				[for='materials-1'] {
+					.checked();
+				}
+			}
+			
+			~ .materials_table-body {
+				.materials_table-body-list {
+					transform: translate(0);
+				}
+				
+				.materials_table-body-li:not(:nth-child(1)) {
+					height: 0;
+				}
+			}
+		}
+		
+		#materials-2:checked {
+			~ .materials_table-header {
+				justify-content: center;
+				
+				[for='materials-2'] {
+					.checked();
+				}
+			}
+			
+			~ .materials_table-body {
+				.materials_table-body-list {
+					transform: translate(-100%);
+				}
+				
+				.materials_table-body-li:not(:nth-child(2)) {
+					height: 0;
+				}
+			}
+		}
+		
+		#materials-3:checked {
+			~ .materials_table-header {
+				justify-content: flex-end;
+				
+				[for='materials-3'] {
+					.checked();
+				}
+			}
+			
+			~ .materials_table-body {
+				.materials_table-body-list {
+					transform: translate(-200%);
+				}
+				
+				.materials_table-body-li:not(:nth-child(3)) {
+					height: 0;
+				}
+			}
+		}
+	}
+	
+	&_table-body-content {
+		max-width: 100vw;
+		padding: 28px 16px 0px;
+	}
+	
+	&_table-header {
+		display: flex;
+		font-family: Montserrat;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 20px;
+		line-height: 150%;
+		text-align: center;
+		letter-spacing: 0.01em;
+		transition: .2s;
+	}
+	
+	&_table-tab {
+		flex: 1 0 auto;
+		display: flex;
+		justify-content: center;
+		padding: 16px;
+		color: #006DC3;
+		background: #fff;
+		transition: .2s;
+		
+		&:not(:last-child) {
+			border-right: 1px solid #006DC3;
+		}
+	}
+	
+	&_table-tab-text {
+		padding-bottom: 5px;
+		border-bottom: 1px solid rgba(#fff, 0.5);
+	}
+	
+	&_table-content-description {
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 160%;
+		margin-bottom: 32px;
+	}
+	
+	&_table-content-title {
+		font-family: Montserrat;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 16px;
+		line-height: 140%;
+		letter-spacing: 0.01em;
+		text-transform: uppercase;
+		margin-bottom: 32px;
+	}
+	
+	&_table-content-list {
+		.grid(12px, 26px);
+	}
+	
+	&_table-content-li {
+		.cell(6);
+	}
+	
+	&_table-content-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+	
+	&_table-content-img {
+		margin-bottom: 20px;
+	}
+	
+	&_table-content-text {
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 140%;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+	}
+	
+	&_table-body {
+		overflow: hidden;
+	}
+	
+	&_table-body-list {
+		display: flex;
+		transition: .2s;
+	}
+	
+	&_table-body-li {
+		flex-shrink: 0;
+		width: 100%;
+		overflow: hidden;
+		transition: .2s;
+	}
+	
+	
 	@media (@sm) {
 		padding-top: 60px;
 		padding-bottom: 128px;
@@ -117,6 +293,14 @@
 			margin-bottom: 0;
 			margin-right: 60px;
 		}
+		
+		&_table-body-content {
+			padding: 34px 40px 48px;
+		}
+		
+		&_table-content-li {
+			.cell(4);
+		}
 	}
 	
 	@media (@md) {
@@ -125,13 +309,64 @@
 		
 		&_formats {
 			flex-direction: row;
-			justify-content: space-between;
 			align-items: flex-start;
 			padding-bottom: 50px;
+		}
+		
+		&_formats-list {
+			margin-bottom: 0;
+			margin-right: 76px;
+		}
+		
+		&_table-body-content {
+			padding: 34px 40px 48px;
+		}
+		
+		&_table-content-li {
+			.cell(2.4);
 		}
 	}
 	
 	@media (@lg) {
 		padding-bottom: 120px;
+		
+		&_content {
+			flex-direction: row;
+		}
+		
+		&_description {
+			flex-shrink: 0;
+			width: 556px;
+			margin-right: 54px;
+		}
+		
+		&_formats {
+			flex-direction: column;
+		}
+		
+		&_formats-list {
+			margin-right: 0;
+			margin-bottom: 58px;
+		}
+		
+		&_table {
+			flex-shrink: 1;
+		}
+		
+		&_table-content-list {
+			.grid(12px, 22px);
+		}
+		
+		&_table-content-li {
+			.cell(4);
+		}
+	}
+	
+	@media (@smx) {
+		&_table {
+			margin-left: -17px;
+			margin-right: -17px;
+			border-bottom: 0;
+		}
 	}
 }
