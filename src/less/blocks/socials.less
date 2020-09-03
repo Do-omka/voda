@@ -1,0 +1,62 @@
+.socials {
+	&_title {
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 16px;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		opacity: .7;
+	}
+	
+	&_icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 28px;
+		height: 28px;
+		padding: 6px;
+		border-radius: 50%;
+		border: 2px solid currentColor;
+		transition: .2s;
+		
+		&:hover {
+			opacity: .8;
+		}
+		
+		@colors: {
+			vk: #006DC3;
+			fb: #2853C4;
+			ok: #FFAA00;
+			yt: #D1001B;
+		};
+		
+		each(@colors, {
+			&._@{key} {
+				color: @value;
+				
+				&::before {
+					.ifnt(@key);
+				}
+			}
+		});
+		
+		@sizes: {
+			vk: 9px;
+			fb: 15px;
+			ok: 15px;
+			yt: 11px;
+		};
+		
+		each(@sizes, {
+			&._@{key} {
+				font-size: @value;
+			}
+		});
+	}
+	
+	&_icon-text {
+		font-size: 0;
+	}
+}
