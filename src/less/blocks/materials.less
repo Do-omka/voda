@@ -1,0 +1,137 @@
+.materials {
+	padding-top: 32px;
+	padding-bottom: 134px;
+	color: #fff;
+	background: #006DC3 svg-load('materials-bg.svg') no-repeat bottom -30px left -30px;
+	
+	&_title {
+		font-family: Montserrat;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 20px;
+		line-height: 150%;
+		letter-spacing: 0.01em;
+		text-transform: uppercase;
+		margin-bottom: 24px;
+	}
+	
+	&_formats {
+		display: flex;
+		flex-direction: column;
+		padding-bottom: 50px;
+	}
+	
+	&_formats-list {
+		font-family: Montserrat;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 140%;
+		letter-spacing: 0.01em;
+		margin-bottom: 44px;
+	}
+	
+	&_formats-li {
+		display: flex;
+		
+		&::before {
+			flex-shrink: 0;
+			.ifnt(drop);
+			font-size: 15px;
+			margin-top: 4px;
+			margin-right: 16px;
+			opacity: .5;
+		}
+		
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+	}
+	
+	&_btns-list {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	&_btns-li {
+		display: flex;
+		
+		&:not(:last-child) {
+			margin-bottom: 28px;
+		}
+	}
+	
+	&_btn {
+		padding: 20px 30px 24px 36px;
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: 900;
+		font-size: 16px;
+		line-height: 19px;
+		text-align: center;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		background: svg-load('materials-btn.svg') no-repeat center / 100% 100%;
+		transition: .2s;
+		
+		&._blue {
+			color: #006DC3;;
+			
+			&:hover {
+				color: #005697;
+			}
+		}
+		
+		&._red {
+			color: #D1001B;
+			
+			&:hover {
+				color: #B80018;
+			}
+		}
+	}
+	
+	@media (@sm) {
+		padding-top: 60px;
+		padding-bottom: 128px;
+		
+		&_title {
+			font-size: 34px;
+			margin-bottom: 36px;
+		}
+		
+		&_formats {
+			padding-bottom: 54px;
+		}
+		
+		&_formats-list {
+			font-size: 20px;
+			margin-bottom: 58px;
+		}
+		
+		&_btns-list {
+			flex-direction: row;
+		}
+		
+		&_btns-li:not(:last-child) {
+			margin-bottom: 0;
+			margin-right: 60px;
+		}
+	}
+	
+	@media (@md) {
+		padding-top: 72px;
+		padding-bottom: 160px;
+		
+		&_formats {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-start;
+			padding-bottom: 50px;
+		}
+	}
+	
+	@media (@lg) {
+		padding-bottom: 120px;
+	}
+}
