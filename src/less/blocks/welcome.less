@@ -2,9 +2,10 @@
 	&_main {
 		display: flex;
 		flex-direction: column;
-		padding-top: 344px;
+		padding-top: 400px;
 		color: #fff;
 		background: url(../img/header.png) no-repeat center / cover;
+		margin-top: -56px;
 	}
 	
 	&_title {
@@ -136,6 +137,8 @@
 		&_main {
 			padding-top: 28px;
 			padding-bottom: 24px;
+			background-size: auto 110%;
+			margin-top: 0;
 		}
 		
 		&_socials-top {
@@ -203,6 +206,8 @@
 	@media (@md) {
 		&_main {
 			padding-bottom: 28px;
+			background-size: 150% auto;
+			background-position: 15% 15%;
 		}
 		
 		&_socials-top {
@@ -229,6 +234,11 @@
 	}
 	
 	@media (@lg) {
+		&_main {
+			background-position: center;
+			background-size: cover;
+		}
+		
 		&_container,
 		&_date-container {
 			max-width: none;
