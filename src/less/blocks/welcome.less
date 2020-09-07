@@ -1,5 +1,7 @@
 .welcome {
 	&_main {
+		display: flex;
+		flex-direction: column;
 		padding-top: 344px;
 		color: #fff;
 		background: url(../img/header.png) no-repeat center / cover;
@@ -13,10 +15,13 @@
 		margin: 4px 0;
 	}
 	
+	&_date-container {
+		margin-top: 25px;
+	}
+	
 	&_date.btn {
 		display: flex;
 		text-align: center;
-		margin-top: 25px;
 		
 		.btn_icon {
 			width: 48px;
@@ -77,13 +82,60 @@
 		}
 	}
 	
+	&_scroll {
+		position: relative;
+		align-self: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 10px 28px;
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 14px;
+		line-height: 16px;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		border: 1px solid rgba(#C4C4C4, 0.5);
+		cursor: pointer;
+		
+		&::before,
+		&::after {
+			position: absolute;
+			top: 50%;
+			width: calc(100vw -  50%);
+			height: 1px;
+			content: '';
+			background: rgba(#C4C4C4, 0.5);
+		}
+		
+		&::before {
+			right: 100%;
+		}
+		
+		&::after {
+			left: 100%;
+		}
+	}
+	
+	&_scroll-icon {
+		margin-right: 15px;
+		
+		&::before {
+			width: 14px;
+			height: 22px;
+			content: '';
+			background-image: svg-load('fnt/mouse.svg');
+		}
+	}
+	
 	@media (@sm) {
 		font-size: 20px;
 		line-height: 24px;
 		
 		&_main {
 			padding-top: 28px;
-			padding-bottom: 40px;
+			padding-bottom: 24px;
 		}
 		
 		&_socials-top {
@@ -123,12 +175,15 @@
 			margin: 20px 0;
 		}
 		
+		&_date-container {
+			margin-top: 32px;
+			margin-bottom: 50px;
+		}
+		
 		&_date.btn {
 			padding-right: 28px;
 			align-self: flex-start;
 			background: svg-load('date-bg.svg') center / 100% 100%;
-			margin-top: 32px;
-			margin-bottom: 44px;
 			
 			.btn_icon {
 				width: 50px;
@@ -167,6 +222,10 @@
 				}
 			}
 		}
+		
+		&_date-container {
+			margin-bottom: 70px;
+		}
 	}
 	
 	@media (@lg) {
@@ -203,6 +262,10 @@
 		
 		&_date-container {
 			padding: 0;
+		}
+		
+		&_scroll {
+			display: none;
 		}
 	}
 }
