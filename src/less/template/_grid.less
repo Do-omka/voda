@@ -44,11 +44,14 @@
 	flex-direction: column;
 }
 
-.cc(@align: center) {
+.cc(@align: none) {
 	.c();
 	justify-content: center;
 	align-items: center;
-	text-align: @align;
+	
+	& when not(@align =  none) {
+		text-align: @align;
+	}
 }
 
 .cell(@col: none, @res: 0) {
@@ -68,7 +71,7 @@
 		flex-grow: 1
 	}
 	
-	& when not((@col = none)) {
+	& when not(@col = none) {
 		.return() {
 			flex: 0 0 .basis()[basis];
 			max-width: .basis()[max-width];
@@ -77,7 +80,7 @@
 		& when (@res = 0) {
 			.return();
 		}
-		& when not((@res = 0)) {
+		& when not(@res = 0) {
 			@media (~'@{res}') {
 				.return();
 			}
