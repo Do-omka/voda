@@ -1,0 +1,12 @@
+.b-popup#popup(onclick='if (event.target === popup) popup.classList.remove("_popup")')
+	._content
+		._body
+			._header
+				h2._title.h2 Обратная связь
+				button._close(type='button' onclick='popup.classList.remove("_popup")') ✖
+			
+			form._form
+				input._input(type='text' name='' placeholder='Представьтесь')
+				input._input(type='email' name='' placeholder='Электронная почта')
+				textarea._input(type='text' name='' placeholder='Ваш вопрос')
+				button._submit.btn(type='submit' class='_blue') Отправить
