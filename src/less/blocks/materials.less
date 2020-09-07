@@ -2,7 +2,7 @@
 	padding-top: 32px;
 	padding-bottom: 134px;
 	color: #fff;
-	background: #006DC3 svg-load('materials-bg.svg') no-repeat bottom -30px left -30px;
+	background: @blue svg-load('materials-bg.svg') no-repeat bottom -30px left -30px;
 	
 	&_content {
 		display: flex;
@@ -80,7 +80,7 @@
 		transition: .2s;
 		
 		&._blue {
-			color: #006DC3;;
+			color: @blue;;
 			
 			&:hover {
 				color: #005697;
@@ -88,10 +88,10 @@
 		}
 		
 		&._red {
-			color: #D1001B;
+			color: @red;
 			
 			&:hover {
-				color: #B80018;
+				color: @dark-red;
 			}
 		}
 	}
@@ -101,7 +101,7 @@
 		
 		.checked() {
 			color: #fff;
-			background: #006DC3;
+			background: @blue;
 		}
 		
 		#materials-1:checked {
@@ -187,12 +187,12 @@
 		display: flex;
 		justify-content: center;
 		padding: 16px;
-		color: #006DC3;
+		color: @blue;
 		background: #fff;
 		transition: .2s;
 		
 		&:not(:last-child) {
-			border-right: 1px solid #006DC3;
+			border-right: 1px solid @blue;
 		}
 	}
 	
