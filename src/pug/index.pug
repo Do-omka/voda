@@ -20,13 +20,75 @@ html
 	body
 		
 		include blocks/welcome
-		section#section1
+		
+		section.b-section#section1
+			._nav(onclick='section2.scrollIntoView({behavior:"smooth"})')
+				- var i = 1
+				while i <= 6
+					if i === 1
+						._point(class='_active')
+					else
+						._point
+					- i++
+			
 			include blocks/invite
-		include blocks/results
-		include blocks/rich-country
-		include blocks/materials
-		include blocks/join
+		
+		section.b-section._alt#section2
+			._nav(onclick='section3.scrollIntoView({behavior:"smooth"})')
+				- var i = 1
+				while i <= 6
+					if i === 2
+						._point(class='_active')
+					else
+						._point
+					- i++
+			include blocks/results
+		
+		section.b-section#section3
+			._nav(onclick='section4.scrollIntoView({behavior:"smooth"})')
+				- var i = 1
+				while i <= 6
+					if i === 3
+						._point(class='_active')
+					else
+						._point
+					- i++
+			include blocks/rich-country
+		
+		section.b-section._alt#section4
+			._nav(onclick='section5.scrollIntoView({behavior:"smooth"})')
+				- var i = 1
+				while i <= 6
+					if i === 4
+						._point(class='_active')
+					else
+						._point
+					- i++
+			include blocks/materials
+		
+		section.b-section#section5
+			._nav(onclick='section6.scrollIntoView({behavior:"smooth"})')
+				- var i = 1
+				while i <= 6
+					if i === 5
+						._point(class='_active')
+					else
+						._point
+					- i++
+			include blocks/join
+		
 		#map
-		include blocks/album
-		include blocks/about
+		
+		section.b-section#section6
+			._nav
+				- var i = 1
+				while i <= 6
+					if i === 6
+						._point(class='_active')
+					else
+						._point
+					- i++
+			include blocks/album
+			include blocks/about
+		
 		include blocks/footer

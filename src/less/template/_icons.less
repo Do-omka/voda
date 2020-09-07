@@ -15,19 +15,23 @@
 .ifnt(@filename) {
 	&:extend(.ifnt);
 	
-	@date: '\E001';
-	@drop: '\E002';
-	@fb: '\E003';
-	@mouse: '\E004';
-	@ok: '\E005';
-	@plus: '\E006';
-	@question: '\E007';
-	@vk: '\E008';
-	@yt: '\E009';
+	@angle: '\E001';
+	@date: '\E002';
+	@drop: '\E003';
+	@fb: '\E004';
+	@mouse: '\E005';
+	@ok: '\E006';
+	@plus: '\E007';
+	@question: '\E008';
+	@vk: '\E009';
+	@yt: '\E00A';
 	
 	content: @@filename;
 }
 
+.ifnt-angle::before {
+	.ifnt(angle);
+}
 .ifnt-date::before {
 	.ifnt(date);
 }
