@@ -2,6 +2,7 @@
 
 const
 	gulp = require('gulp'),
+	del = require('del'),
 	rename = require('rename'),
 	newer = require('gulp-changed'),
 	pug = require('gulp-pug'),
@@ -13,8 +14,11 @@ const
 	bs = require('browser-sync').create(),
 	imgmin = require('gulp-imagemin'),
 	iconfont = require('gulp-iconfont'),
-	iconfontCss = require('gulp-iconfont-css')
-	
+	iconfontCss = require('gulp-iconfont-css'),
+	htmlmin = require('gulp-htmlmin'),
+	jsmin = require('gulp-uglify'),
+	ghPages = require('gulp-gh-pages')
+
 bem.b = true
 bem.e = '_'
 
@@ -40,6 +44,18 @@ function html() {
 		.pipe(bs.stream())
 }
 
+function min_html() {
+	return gulp.src('dev/*.html')
+		.pipe(htmlmin({
+			// collapseWhitespace: true,
+			// conservativeCollapse: true,
+			removeComments: true,
+			minifyCSS: true,
+			minifyJS: true,
+		}))
+		.pipe(gulp.dest('build'))
+}
+
 function css() {
 	return gulp.src('src/less/*.less', {sourcemaps: true})
 	// .pipe(less_newer({getOutputFileName: file => rename(file, {dirname: 'dev/css', extname: '.css'})}))
@@ -56,6 +72,22 @@ function css() {
 		.pipe(bs.stream())
 }
 
+function min_css() {
+	return gulp.src('dev/css/*.css')
+		.pipe(postcss([
+			require('autoprefixer'),
+			require('postcss-csso')({
+				debug: true,
+				comments: false,
+			}),
+			require('css-mqpacker')({
+				sort: true,
+			}),
+			require('postcss-mq-last'),
+		]))
+		.pipe(gulp.dest('build/css'))
+}
+
 function js() {
 	return gulp.src('src/js/*.js', {sourcemaps: true})
 		.pipe(babel({
@@ -63,6 +95,12 @@ function js() {
 		}))
 		.pipe(gulp.dest('dev/js', {sourcemaps: '.'}))
 		.pipe(bs.stream())
+}
+
+function min_js() {
+	return gulp.src('dev/js/*.js')
+		.pipe(jsmin())
+		.pipe(gulp.dest('build/js'))
 }
 
 function img() {
@@ -85,13 +123,6 @@ function fnt() {
 		.pipe(bs.stream())
 }
 
-function copyToRoot() {
-	return gulp.src('src/root/*', {since: gulp.lastRun(fnt)})
-		.pipe(newer('dev'))
-		.pipe(gulp.dest('dev'))
-		.pipe(bs.stream())
-}
-
 function icons() {
   return gulp.src('dev/img/fnt/*.svg')
 	 .pipe(iconfontCss({
@@ -110,6 +141,34 @@ function icons() {
 		normalize: true,
 	  }))
 	 .pipe(gulp.dest('dev/fnt'))
+}
+
+function copy_root() {
+	return gulp.src('src/root/*', {since: gulp.lastRun(fnt)})
+		.pipe(newer('dev'))
+		.pipe(gulp.dest('dev'))
+		.pipe(bs.stream())
+}
+
+function copy_assets(cb) {
+	gulp.src('src/root/*')
+		.pipe(gulp.dest('build'))
+	gulp.src(['dev/img/**', 'dev/fnt/**'], {base:'dev/'})
+		.pipe(gulp.dest('build'))
+	cb()
+}
+
+function clear_dev() {
+	return del(['dev/'])
+}
+
+function clear_build() {
+	return del(['build/'])
+}
+
+function deploy() {
+	return gulp.src('build/**')
+		.pipe(ghPages())
 }
 
 // watch
@@ -153,6 +212,19 @@ function serve() {
 // tasks
 gulp.task('default', gulp.parallel(serve, watch_html, watch_img, watch_fnt, watch_icons, watch_css, watch_js, watch_root))
 
-gulp.task('run', gulp.parallel(gulp.series(img, fnt, icons, css), html, js, copyToRoot))
+gulp.task('run', gulp.series(
+	clear_dev,
+	gulp.parallel(
+		gulp.series(img, fnt, icons, css),
+		html, js, copy_root
+	)
+))
+
+gulp.task('min', gulp.series(
+	clear_build,
+	gulp.parallel(min_html, min_css, min_js, copy_assets),
+	deploy
+))
 
 gulp.task('dev', gulp.series('run', 'default'))
+gulp.task('build', gulp.series('run', 'min'))
