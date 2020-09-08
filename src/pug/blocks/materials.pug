@@ -1,26 +1,38 @@
 - 
 	var
-		categories = ['3–5 классы', '5–8 классы', '9–11 классы'],
-		list1 = [
-			'методический гид',
-			'анимированная презентация',
-			'карточки для игры',
-			'карманная книжка',
-			'4 видеоролика'
-		],
-		list2 = [
-			'методический гид',
-			'анимированная презентация',
-			'карточки для игры',
-			'3 видеоролика',
-			'тестовые задания'
-		],
-		list3 = [
-			'методический гид',
-			'анимированная презентация',
-			'задания для игрового квеста'
+		materials = [
+			{
+				name: '3–5 классы',
+				description: `Ученики начальной школы познакомятся с рядом профессий, которые помогают обеспечивать нас чистой водой, оберегают воду от загрязнения, а людей — от связанных с водой опасностей. С помощью игры «Нужен специалист» ребята научатся распознавать ситуации, когда нужна помощь того или иного водного специалиста.`,
+				set: [
+					['методический гид', 'guide'],
+					['анимированная презентация', 'presentation'],
+					['карточки для игры', 'cards'],
+					['карманная книжка', 'pocketbook'],
+					['4 видеоролика', 'videos']
+				],
+			},
+			{
+				name: '5–8 классы',
+				description: `Ученики средних классов узнают о вызовах в обеспечении людей водой и необходимых мерах для создания эффективной системы управления водной стихией. Ребята смогут закрепить свои знания с помощью теста на портале водныепрофессии.рф.`,
+				set: [
+					['методический гид', 'guide'],
+					['анимированная презентация', 'presentation'],
+					['карточки для игры', 'cards'],
+					['3 видеоролика', 'videos'],
+					['тестовые задания', 'tests']
+				],
+			},
+			{
+				name: '9–11 классы',
+				description: `Старшеклассникам предлагается пройти игровой квест, выполняя различные задания: создать видеоролик о способах сбережения воды и плакат социальной рекламы, исследовать природный водоем и другие.`,
+				set: [
+					['методический гид', 'guide'],
+					['анимированная презентация', 'presentation'],
+					['задания для игрового квеста', 'quest']
+				],
+			}
 		]
-
 
 .b-materials
 	.container
@@ -39,46 +51,25 @@
 						li._btns-li
 							a._btn(href='https://ecoclass.me/lk/lessons/50/' target='_blank' class='_blue') Получить диплом
 			._table
-				input(type='radio' name='materials' id='materials-1' checked)
-				input(type='radio' name='materials' id='materials-2')
-				input(type='radio' name='materials' id='materials-3')
+				each item, i in materials
+					if i === 0
+						input(type='radio' name='materials' id='materials-' + (i + 1) checked)
+					else
+						input(type='radio' name='materials' id='materials-' + (i + 1))
 				._table-header
-					each item, i in categories
+					each item, i in materials
 						label._table-tab(for='materials-' + (i + 1))
-							._table-tab-text !{item}
+							._table-tab-text !{item.name}
 				._table-body
-					._table-body-list
-						._table-body-li
-							._table-body-content
-								._table-content-description.
-									Ученики начальной школы познакомятся с рядом профессий, которые помогают обеспечивать нас чистой водой, оберегают воду от загрязнения, а людей — от связанных с водой опасностей. С помощью игры «Нужен специалист» ребята научатся распознавать ситуации, когда нужна помощь того или иного водного специалиста.
-								._table-content-title Комплект материалов:
-								ul._table-content-list
-									each item, i in list1 
-										li._table-content-li
-											._table-content-card
-												img._table-content-img(src='./img/materials-' + (i + 1) + '.svg')
-												._table-content-text !{item}
-						
-						._table-body-li
-							._table-body-content
-								._table-content-description.
-									Ученики средних классов узнают о вызовах в обеспечении людей водой и необходимых мерах для создания эффективной системы управления водной стихией. Ребята смогут закрепить свои знания с помощью теста на портале водныепрофессии.рф.
-								._table-content-title Комплект материалов:
-								ul._table-content-list
-									each item, i in list2 
-										li._table-content-li
-											._table-content-card
-												img._table-content-img(src='./img/materials-' + (i + 5 + 1) + '.svg')
-												._table-content-text !{item}
-						._table-body-li
-							._table-body-content
-								._table-content-description.
-									Старшеклассникам предлагается пройти игровой квест, выполняя различные задания: создать видеоролик о способах сбережения воды и плакат социальной рекламы, исследовать природный водоем и другие.
-								._table-content-title Комплект материалов:
-								ul._table-content-list
-									each item, i in list3 
-										li._table-content-li
-											._table-content-card
-												img._table-content-img(src='./img/materials-' + (i + 10 + 1) + '.svg')
-												._table-content-text !{item}
+					ul._table-body-list
+						each item, i in materials
+							li._table-body-li
+								._table-body-content
+									._table-content-description #{item.description}
+									._table-content-title Комплект материалов:
+									ul._table-content-list
+										each li, j in item.set
+											li._table-content-li
+												._table-content-card
+													img._table-content-img(src='./img/materials/' + li[1] + '.svg')
+													._table-content-text !{li[0]}
