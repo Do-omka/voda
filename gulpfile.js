@@ -197,7 +197,7 @@ function watch_icons() {
 }
 
 function watch_root() {
-	return gulp.watch('src/root', copyToRoot)
+	return gulp.watch('src/root', copy_root)
 }
 
 function serve() {
